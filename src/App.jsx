@@ -1,7 +1,7 @@
-import "./App.css";
-
 function App() {
-  return <>react</>;
+  const x = 23;
+
+  return <>World Wise</>;
 }
 
 export default App;
