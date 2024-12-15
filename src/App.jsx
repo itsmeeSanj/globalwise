@@ -1,7 +1,15 @@
-function App() {
-  const x = 23;
+import { BrowserRouter, Routes } from "react-router-dom";
 
-  return <>World Wise</>;
+import Routing from "./routes/Routing";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Routing />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
