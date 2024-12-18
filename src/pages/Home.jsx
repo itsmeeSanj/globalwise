@@ -1,7 +1,12 @@
-import React from "react";
+import PageNav from "../Components/PageNav";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <PageNav />
+      Home
+    </>
+  );
 }
 
 export default Home;
