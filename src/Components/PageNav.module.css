@@ -1,0 +1,9 @@
+.nav {
+  justify-content: center;
+  background-color: cadetblue;
+}
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
