@@ -7,3 +7,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+/* global css */
+.nav :global(.active) {
+  background-color: red;
+  color: #fff;
+}
