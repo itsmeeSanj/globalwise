@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Login.module.css";
 import PageNav from "../Components/PageNav";
 
+import Styles from "../Components/Button.module.css";
+
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = React.useState("jack@example.com");
@@ -33,7 +35,7 @@ export default function Login() {
         </div>
 
         <div>
-          <button className='cta'>Login</button>
+          <button className={Styles.btn}>Login</button>
         </div>
       </form>
     </main>
