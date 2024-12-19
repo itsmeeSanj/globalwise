@@ -1,5 +1,5 @@
-import styles from "./AppNav.module.css"; // destructure
-import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
+import styles from "./AppNav.module.css";
 
 function AppNav() {
   return (
@@ -7,9 +7,17 @@ function AppNav() {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Sidebar />
+            <Link to='sdf'>HEHE</Link>
           </li>
-          <li>sdfdsf</li>
+          <li>
+            <Link to='sdf'>HEHE</Link>
+          </li>
+          <li>
+            <Link to='sdf'>HEHE</Link>
+          </li>
+          <li>
+            <Link to='sdf'>HEHE</Link>
+          </li>
         </ul>
       </nav>
     </>
