@@ -6,7 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
-import City from "./Components/City";
+import CityList from "./Components/CityList";
 
 function App() {
   return (
@@ -17,8 +17,9 @@ function App() {
         <Route path='product' element={<Product />} />
         <Route path='/login' element={<Login />} />
         <Route path='app' element={<AppLayout />}>
-          <Route index path='cities' element={<City />} />
-          <Route path='countries' element={<>sdsdsss</>} />
+          <Route index element={<CityList />} />
+          <Route path='cities' element={<CityList />} />
+          <Route path='countries' element={<>sadsad</>} />
           <Route path='form' element={<>Form</>} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
