@@ -1,29 +1,19 @@
-import React from "react";
-
+import Spinner from "./Spinner";
 import styles from "./CityList.module.css";
+import CityItem from "./CityItem";
+import Message from "./Message";
 
-function CityList() {
-  const [cities, setCities] = React.useState([]);
-
-  React.useEffect(function () {
-    async function dataFetech() {
-      try {
-        const citiesFetch = await fetch("http://localhost:9000/cities");
-        const citiesOutput = await citiesFetch.json();
-        setCities(citiesOutput);
-      } catch (error) {
-        throw new Error("NOT FOUND", error);
-      }
-    }
-    dataFetech();
-  }, []);
+// eslint-disable-next-line react/prop-types
+function CityList({ Cities, isLoading }) {
+  if (isLoading) return <Spinner />;
+  if (!Cities.length) return <Message />;
 
   return (
-    <div className={styles.cityList}>
-      {cities.map((city, index) => {
-        return <div key={index}>{city.cityName}</div>;
+    <ul className={styles.cityList}>
+      {Cities?.map((city) => {
+        return <CityItem city={city} key={city.id} />;
       })}
-    </div>
+    </ul>
   );
 }
 
