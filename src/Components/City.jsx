@@ -1,3 +1,7 @@
+import React from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+
+import ButtonBack from "./ButtonBack";
 import styles from "./City.module.css";
 
 const formatDate = (date) =>
@@ -8,19 +12,34 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
+// TEMP DATA
+const currentCity = {
+  cityName: "Lisbon",
+  emoji: "🇵🇹",
+  date: "2027-10-31T15:59:59.138Z",
+  notes: "My favorite city so far!",
+};
+
 function City() {
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+  const [city, setCity] = React.useState([]);
+  const { params } = useParams();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
 
   const { cityName, emoji, date, notes } = currentCity;
 
+  React.useEffect(function () {
+    function fetchCityAPI() {}
+    fetchCityAPI();
+  }, []);
+
   return (
     <div className={styles.city}>
+      <h1>lat: {lat}</h1>
+      <h1>lng: {lng}</h1>
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
@@ -51,7 +70,9 @@ function City() {
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <ButtonBack />
+      </div>
     </div>
   );
 }
