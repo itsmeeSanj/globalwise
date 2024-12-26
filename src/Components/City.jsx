@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import styles from "./City.module.css";
 import Button from "./Button";
@@ -20,9 +20,12 @@ const currentCity = {
   notes: "My favorite city so far!",
 };
 
+const BASE_URL = "";
+
 function City() {
   const [city, setCity] = React.useState([]);
-  const { params } = useParams();
+  const [isLoading, setIsLoading] = React.useState(false);
+  // const { params } = useParams();
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,7 +36,19 @@ function City() {
   const { cityName, emoji, date, notes } = currentCity;
 
   React.useEffect(function () {
-    function fetchCityAPI() {}
+    async function fetchCityAPI() {
+      try {
+        setIsLoading(true);
+        const res = await fetch(`${BASE_URL}`);
+        const data = await res.json();
+
+        setCity(data);
+      } catch (error) {
+        throw new Error("error", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
     fetchCityAPI();
   }, []);
 
