@@ -9,7 +9,7 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city, onDeleteItem }) {
-  const { cityName, emoji, date, id, position } = city;
+  const { cityName, emoji, date, id, position } = city; //destructure
 
   return (
     <li>

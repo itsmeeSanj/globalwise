@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 
-import ButtonBack from "./ButtonBack";
 import styles from "./City.module.css";
+import Button from "./Button";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -23,6 +23,7 @@ const currentCity = {
 function City() {
   const [city, setCity] = React.useState([]);
   const { params } = useParams();
+  const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -71,14 +72,14 @@ function City() {
         </a>
       </div>
 
-      <div>
-        <ButtonBack />
-      </div>
+      <Button onClick={() => navigate(-1)} type='primary'>
+        Go Back
+      </Button>
 
-      {/*  */}
-      <button onClick={() => setSearchParams({ lat: 23, lng: 50 })}>
+      {/*  Search Params */}
+      {/* <button onClick={() => setSearchParams({ lat: 23, lng: 50 })}>
         change paramsss
-      </button>
+      </button> */}
     </div>
   );
 }
