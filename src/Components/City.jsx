@@ -40,6 +40,7 @@ function City() {
     <div className={styles.city}>
       <h1>lat: {lat}</h1>
       <h1>lng: {lng}</h1>
+
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
@@ -73,6 +74,11 @@ function City() {
       <div>
         <ButtonBack />
       </div>
+
+      {/*  */}
+      <button onClick={() => setSearchParams({ lat: 23, lng: 50 })}>
+        change paramsss
+      </button>
     </div>
   );
 }
