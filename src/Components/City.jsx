@@ -1,8 +1,9 @@
 import React from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "./Button";
 import styles from "./City.module.css";
+import { useCities } from "../contexts/CitiesContext";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -12,57 +13,27 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-// TEMP DATA
-const currentCity = {
-  cityName: "Lisbon",
-  emoji: "🇵🇹",
-  date: "2027-10-31T15:59:59.138Z",
-  notes: "My favorite city so far!",
-};
-
-const BASE_URL = "";
-
 function City() {
-  const [city, setCity] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-
-  // const { params } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { curCity, getCity } = useCities();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  // const lat = searchParams.get("lat");
+  // const lng = searchParams.get("lng");
 
-  const { cityName, emoji, date, notes } = currentCity;
+  const { cityName, emoji, date, notes } = curCity;
 
-  React.useEffect(function () {
-    async function fetchCityAPI() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`${BASE_URL}`);
-        const data = await res.json();
-
-        setCity(data);
-      } catch (error) {
-        throw new Error("error", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchCityAPI();
-  }, []);
-
-  React.useEffect(() => {
-    setState((state) => state + 1);
-  }, []);
-  console.log("App");
+  React.useEffect(
+    function () {
+      getCity(id);
+    },
+    [id]
+  );
 
   return (
     <div className={styles.city}>
-      <h1>lat: {lat}</h1>
-      <h1>lng: {lng}</h1>
-
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
@@ -96,11 +67,6 @@ function City() {
       <Button onClick={() => navigate(-1)} type='primary'>
         Go Back
       </Button>
-
-      {/*  Search Params */}
-      {/* <button onClick={() => setSearchParams({ lat: 23, lng: 50 })}>
-        change paramsss
-      </button> */}
     </div>
   );
 }
