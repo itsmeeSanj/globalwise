@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import styles from "./City.module.css";
 import { useCities } from "../contexts/CitiesContext";
+import Spinner from "./Spinner";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -16,14 +17,12 @@ const formatDate = (date) =>
 function City() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { curCity, getCity } = useCities();
+  const { curCity, isLoading, getCity } = useCities();
 
   // const [searchParams, setSearchParams] = useSearchParams();
 
   // const lat = searchParams.get("lat");
   // const lng = searchParams.get("lng");
-
-  const { cityName, emoji, date, notes } = curCity;
 
   React.useEffect(
     function () {
@@ -31,6 +30,10 @@ function City() {
     },
     [id]
   );
+
+  const { cityName, emoji, date, notes } = curCity;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.city}>
