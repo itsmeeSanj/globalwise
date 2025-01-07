@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import CityList from "./Components/CityList";
 import CountriesList from "./Components/CountriesList";
 import City from "./Components/City";
+import Form from "./Components/Form";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
             <Route path='cities' element={<CityList />} />
             <Route path='cities/:id' element={<City />} />
             <Route path='countries' element={<CountriesList />} />
-            <Route path='form' element={<>Form</>} />
+            <Route path='form' element={<Form />} />
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>

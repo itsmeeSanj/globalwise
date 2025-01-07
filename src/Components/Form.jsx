@@ -51,7 +51,7 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button>Add </Button>
+        <Button type='primary'>Add </Button>
         <BackButton />
       </div>
     </form>
