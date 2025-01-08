@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 
 const BASE_URL = "http://localhost:9000";
-
+// 1.
 const CitiesContext = createContext();
 
 function CitiesProvider({ children }) {
@@ -39,6 +39,7 @@ function CitiesProvider({ children }) {
   }
 
   return (
+    // 2.
     <CitiesContext.Provider
       value={{
         cities,
@@ -53,6 +54,7 @@ function CitiesProvider({ children }) {
 }
 
 function useCities() {
+  // 3.
   const value = useContext(CitiesContext);
 
   if (value === undefined)
