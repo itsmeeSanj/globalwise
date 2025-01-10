@@ -20,7 +20,7 @@ function Map() {
 
   const [mapPosition, setMapPosition] = React.useState([40, 0]);
   // custom-hooks
-  const [mapLat, mapLng] = useUrlposition();
+  const [lat, lng] = useUrlposition();
 
   const {
     isLoading: isLoadingPosition,
@@ -30,9 +30,9 @@ function Map() {
 
   React.useEffect(
     function () {
-      if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+      if (lat && lng) setMapPosition([lat, lng]);
     },
-    [mapLat, mapLng]
+    [lat, lng]
   );
 
   React.useEffect(
@@ -65,7 +65,10 @@ function Map() {
         {cities.map((city, index) => {
           return (
             <Marker
-              position={[city.position.lat, city.position.lng]}
+              position={[
+                city.position.lat || city.position.mapLat,
+                city.position.lng || city.position.mapLng,
+              ]}
               key={index}
             >
               <Popup>
@@ -101,7 +104,6 @@ function DetectClick() {
 
   useMapEvents({
     click: (e) => {
-      console.log("e", e);
       navigate(`form?lat=${e.latlng?.lat}&lng=${e.latlng?.lng}`);
     },
   });

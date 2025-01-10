@@ -10,8 +10,9 @@ import { useUrlposition } from "../hooks/useUrlposition";
 import Message from "./Message";
 import Spinner from "./Spinner";
 
-import "react-datepicker/dist/react-datepicker.css";
 import { useCities } from "../contexts/CitiesContext";
+import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 // export function convertToEmoji(countryCode) {
 //   const codePoints = countryCode
@@ -24,13 +25,12 @@ import { useCities } from "../contexts/CitiesContext";
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
-  const [mapLat, mapLng] = useUrlposition();
-
-  const { createCity } = useCities();
+  const navigate = useNavigate();
+  const [lat, lng] = useUrlposition();
+  const { createCity, isLoading } = useCities();
 
   const [isLoadingGeo, setIsLoadingGeo] = useState(false);
   const [geoError, setGeoError] = useState("");
-
   const [cityName, setCityName] = useState("");
   // const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
@@ -39,14 +39,14 @@ function Form() {
 
   useEffect(
     function () {
-      if ((!mapLat, !mapLng)) return;
+      if ((!lat, !lng)) return;
 
       async function fetchCityData() {
         try {
           setIsLoadingGeo(true);
           setGeoError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${mapLat}&longitude=${mapLng}`
+            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
 
@@ -64,10 +64,10 @@ function Form() {
       }
       fetchCityData();
     },
-    [mapLat, mapLng]
+    [lat, lng]
   );
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!cityName || !date) return;
@@ -77,19 +77,22 @@ function Form() {
       emoji,
       date,
       notes,
-      position: { mapLat, mapLng },
+      position: { lat, lng },
     };
 
-    createCity(newCity);
+    await createCity(newCity); //async
+    navigate("/app/cities");
   }
 
   if (isLoadingGeo) return <Spinner />;
-  if ((!mapLat, !mapLng))
-    return <Message message={"Start by clicking on the map"} />;
+  if ((!lat, !lng)) return <Message message={"Start by clicking on the map"} />;
   if (geoError) return <Message message={geoError} />;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor='cityName'>City name</label>
         <input
@@ -126,7 +129,7 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type='primary'>Add </Button>
+        <Button type='primary'>Add</Button>
         <BackButton />
       </div>
     </form>

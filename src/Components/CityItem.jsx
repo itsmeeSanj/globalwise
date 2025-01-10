@@ -19,7 +19,9 @@ function CityItem({ city, onDeleteItem }) {
         className={`${styles.cityItem} ${
           id === curCity.id ? styles["cityItem--active"] : ""
         }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={`${id}?lat=${position.lat || position.mapLat}&lng=${
+          position.lng || position.mapLng
+        }`}
       >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>

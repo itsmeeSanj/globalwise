@@ -41,7 +41,6 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     try {
       setIsLoading(true);
-      // to send data to api
       const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
@@ -50,8 +49,9 @@ function CitiesProvider({ children }) {
         },
       });
       const data = await res.json();
+
+      setCities((cities) => [...cities, data]); //refetch data instantly
       console.log("data", data);
-      // setCities();
     } catch (error) {
       throw new Error("Something is wrong :(", error);
     } finally {

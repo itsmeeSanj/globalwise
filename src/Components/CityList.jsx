@@ -14,7 +14,7 @@ function CityList() {
       <Message message='Add your first city by clicking on a city on the map :)' />
     );
 
-  function handleDeleteItem() {
+  function handleDeleteItem(id) {
     // Cities.filter()
     console.log("delete");
   }
