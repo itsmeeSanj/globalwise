@@ -1,130 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "7443",
-      "cityName": "Almodovar del Campo",
-      "emoji": "ES",
-      "date": "2025-01-08T03:49:53.521Z",
-      "notes": "",
-      "position": {
-        "mapLat": "38.71464318759392",
-        "mapLng": "-4.658203125000001"
-      }
-    },
-    {
-      "id": "01a7",
-      "cityName": "Camara de Lobos",
-      "emoji": "PT",
-      "date": "2025-01-10T01:12:46.029Z",
-      "notes": "Nice Place",
-      "position": {
-        "lat": "32.68119913981241",
-        "lng": "-16.984863281250004"
-      }
-    },
-    {
-      "id": "7db3",
-      "cityName": "Camara de Lobos",
-      "emoji": "PT",
-      "date": "2025-01-10T01:12:46.029Z",
-      "notes": "Nice Place",
-      "position": {
-        "lat": "32.68119913981241",
-        "lng": "-16.984863281250004"
-      }
-    },
-    {
-      "id": "eba8",
-      "cityName": "Town of Colesville",
-      "emoji": "US",
-      "date": "2025-01-10T01:14:41.753Z",
-      "notes": "",
-      "position": {
-        "lat": "42.232912686309355",
-        "lng": "-75.6548698998656"
-      }
-    },
-    {
-      "id": "be67",
-      "cityName": "Colerain",
-      "emoji": "US",
-      "date": "2025-01-10T01:14:41.753Z",
-      "notes": "",
-      "position": {
-        "lat": "40.12225849140951",
-        "lng": "-80.83846342350269"
-      }
-    },
-    {
-      "id": "1451",
-      "cityName": "Louisville",
-      "emoji": "US",
-      "date": "2025-01-10T01:15:53.240Z",
-      "notes": "",
-      "position": {
-        "lat": "38.28397915240454",
-        "lng": "-85.62858447852905"
-      }
-    },
-    {
-      "id": "a63b",
-      "cityName": "Chatham-Blairs District",
-      "emoji": "US",
-      "date": "2025-01-10T01:33:29.923Z",
-      "notes": "",
-      "position": {
-        "lat": "36.66974545317336",
-        "lng": "-79.4786474503317"
-      }
-    },
-    {
-      "id": "c7f8",
-      "cityName": "Siler",
-      "emoji": "US",
-      "date": "2025-01-10T01:35:15.315Z",
-      "notes": "",
-      "position": {
-        "lat": "36.64723838204164",
-        "lng": "-84.04660628251666"
-      }
-    },
-    {
       "id": "bda6",
       "cityName": "Carterville",
       "emoji": "US",
@@ -136,36 +12,14 @@
       }
     },
     {
-      "id": "4eaf",
-      "cityName": "Nebreda",
-      "emoji": "ES",
-      "date": "2025-01-10T01:43:08.454Z",
+      "id": "6d88",
+      "cityName": "Shuklaphanta National Park",
+      "emoji": "NP",
+      "date": "2025-01-10T01:47:21.687Z",
       "notes": "",
       "position": {
-        "lat": "41.96980496257353",
-        "lng": "-3.6035156250000004"
-      }
-    },
-    {
-      "id": "cc84",
-      "cityName": "Saint-Marcel",
-      "emoji": "FR",
-      "date": "2025-01-10T01:43:14.580Z",
-      "notes": "",
-      "position": {
-        "lat": "46.78536273338174",
-        "lng": "4.877929687500001"
-      }
-    },
-    {
-      "id": "fee2",
-      "cityName": "Kirchensittenbach",
-      "emoji": "DE",
-      "date": "2025-01-10T01:43:18.875Z",
-      "notes": "",
-      "position": {
-        "lat": "49.5977417342617",
-        "lng": "11.447753906250002"
+        "lat": "28.853176497316518",
+        "lng": "80.33134460449219"
       }
     }
   ]
