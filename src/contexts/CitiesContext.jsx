@@ -140,7 +140,7 @@ function useCities() {
   const value = useContext(CitiesContext);
 
   if (value === undefined)
-    throw new Error("Cities contex was used outside of the citiesProvider");
+    throw new Error("Cities contex was used outs ide of the citiesProvider");
 
   return value;
 }
