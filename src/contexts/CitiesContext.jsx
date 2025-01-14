@@ -8,6 +8,7 @@ const initialState = {
   cities: [],
   isLoading: false,
   curCity: {},
+  error: "",
 };
 
 function reducer(state, action) {
@@ -15,23 +16,37 @@ function reducer(state, action) {
     case "loading":
       return { ...state, isLoading: true };
 
-    case "cities/loaded": // should be more like event
+    case "cities/loaded": // fetch (get)
       return {
         ...state,
         isLoading: false,
         cities: action.payload,
       };
 
-    case "cities/created":
+    case "city/loaded":
+      return {
+        ...state,
+        isLoading: false,
+        curCity: action.payload,
+      };
+
+    case "cities/created": //post
       return {
         ...state,
         isLoading: true,
       };
 
-    case "cities/deleted":
+    case "cities/deleted": //delete
       return {
         ...state,
         isLoading: false,
+      };
+
+    case "rejected":
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
 
     default:
@@ -51,37 +66,51 @@ function CitiesProvider({ children }) {
     async function dataFetech() {
       dispatch({
         type: "loading",
-      });
+      }); //isloading
 
       try {
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
-        // setCities(data);
-      } catch (error) {
-        throw new Error("Something is wrong :(", error);
-      } finally {
-        // setIsLoading(false);
+        dispatch({
+          type: "cities/loaded",
+          payload: data,
+        }); //setData
+      } catch {
+        dispatch({
+          type: "rejected",
+          payload: "There was an error loading data :(",
+        });
       }
     }
     dataFetech();
   }, []);
 
   async function getCity(id) {
+    dispatch({
+      type: "loading",
+    });
+
     try {
-      setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
-      setCurCity(data);
-    } catch (error) {
-      throw new Error("Something is wrong :(", error);
-    } finally {
-      setIsLoading(false);
+
+      dispatch({
+        type: "city/loaded",
+        payload: data,
+      });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was an error loading data :(",
+      });
     }
   }
 
   async function createCity(newCity) {
+    dispatch({
+      type: "loading",
+    });
     try {
-      setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
@@ -91,31 +120,41 @@ function CitiesProvider({ children }) {
       });
       const data = await res.json();
 
-      setCities((cities) => [...cities, data]); //refetch data instantly
-      console.log("data", data);
-    } catch (error) {
-      throw new Error("Something is wrong :(", error);
-    } finally {
-      setIsLoading(false);
+      dispatch({
+        type: "cities/created",
+        payload: (cities) => [...cities, data],
+      });
+
+      // setCities((cities) => [...cities, data]); //refetch data instantly
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was an error loading data :(",
+      });
     }
   }
 
   async function deleteCity(id) {
+    dispatch({
+      type: "loading",
+    });
     try {
-      setIsLoading(true);
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
 
-      setCities((cities) => cities.filter((city) => city.id !== id)); //refetch data instantly
-    } catch (error) {
-      throw new Error("There was an error while deleting city. :(", error);
-    } finally {
-      setIsLoading(false);
-    }
+      dispatch({
+        type: "cities/created",
+        payload: (cities) => cities.filter((city) => city.id !== id),
+      });
 
-    // Cities.filter()
-    console.log("delete");
+      // setCities((cities) => cities.filter((city) => city.id !== id)); //refetch data instantly
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was an error loading data :(",
+      });
+    }
   }
 
   return (
