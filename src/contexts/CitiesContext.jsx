@@ -30,16 +30,18 @@ function reducer(state, action) {
         curCity: action.payload,
       };
 
-    case "cities/created": //post
-      return {
-        ...state,
-        isLoading: true,
-      };
-
-    case "cities/deleted": //delete
+    case "city/created": //post
       return {
         ...state,
         isLoading: false,
+        cities: [...state.cities, action.payload],
+      };
+
+    case "city/deleted": //delete
+      return {
+        ...state,
+        isLoading: false,
+        cities: state.cities.filter((city) => city.id !== action.payload),
       };
 
     case "rejected":
@@ -57,10 +59,6 @@ function reducer(state, action) {
 function CitiesProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { cities, isLoading, curCity } = state;
-
-  // const [cities, setCities] = React.useState([]);
-  // const [isLoading, setIsLoading] = React.useState(false);
-  // const [curCity, setCurCity] = React.useState({});
 
   React.useEffect(function () {
     async function dataFetech() {
@@ -85,6 +83,7 @@ function CitiesProvider({ children }) {
     dataFetech();
   }, []);
 
+  // get city
   async function getCity(id) {
     dispatch({
       type: "loading",
@@ -106,6 +105,7 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // create city
   async function createCity(newCity) {
     dispatch({
       type: "loading",
@@ -121,11 +121,9 @@ function CitiesProvider({ children }) {
       const data = await res.json();
 
       dispatch({
-        type: "cities/created",
-        payload: (cities) => [...cities, data],
+        type: "city/created",
+        payload: data,
       });
-
-      // setCities((cities) => [...cities, data]); //refetch data instantly
     } catch {
       dispatch({
         type: "rejected",
@@ -134,6 +132,7 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // delete city
   async function deleteCity(id) {
     dispatch({
       type: "loading",
@@ -144,8 +143,8 @@ function CitiesProvider({ children }) {
       });
 
       dispatch({
-        type: "cities/created",
-        payload: (cities) => cities.filter((city) => city.id !== id),
+        type: "city/deleted",
+        payload: id,
       });
 
       // setCities((cities) => cities.filter((city) => city.id !== id)); //refetch data instantly
