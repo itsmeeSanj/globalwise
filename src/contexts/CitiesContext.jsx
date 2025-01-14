@@ -35,6 +35,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        curCity: action.payload,
       };
 
     case "city/deleted": //delete
@@ -42,6 +43,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== action.payload),
+        curCity: {},
       };
 
     case "rejected":
@@ -58,7 +60,7 @@ function reducer(state, action) {
 
 function CitiesProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { cities, isLoading, curCity } = state;
+  const { cities, isLoading, curCity, error } = state;
 
   React.useEffect(function () {
     async function dataFetech() {
@@ -85,6 +87,8 @@ function CitiesProvider({ children }) {
 
   // get city
   async function getCity(id) {
+    if (id === curCity.id) return; //id is string that comes from url so make sure you change it into number
+
     dispatch({
       type: "loading",
     });
@@ -164,6 +168,7 @@ function CitiesProvider({ children }) {
         isLoading,
         curCity,
         getCity,
+        error,
         createCity,
         deleteCity,
       }}

@@ -32,7 +32,7 @@ function Form() {
   const [isLoadingGeo, setIsLoadingGeo] = useState(false);
   const [geoError, setGeoError] = useState("");
   const [cityName, setCityName] = useState("");
-  // const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
@@ -54,7 +54,7 @@ function Form() {
             throw new Error("That doesn't seem to be a city :(");
 
           setCityName(data.city || data.locality || "");
-          // setCountry(data.countryName || data.locality || "");
+          setCountry(data.countryName || data.locality || "");
           setEmoji(data.countryCode || "");
         } catch (error) {
           setGeoError(error.message);
@@ -75,6 +75,7 @@ function Form() {
     const newCity = {
       cityName,
       emoji,
+      country,
       date,
       notes,
       position: { lat, lng },

@@ -1,25 +1,51 @@
 {
   "cities": [
     {
-      "id": "bda6",
-      "cityName": "Carterville",
-      "emoji": "US",
-      "date": "2025-01-10T01:35:28.425Z",
+      "id": "37ce",
+      "cityName": "Sani Bheri",
+      "emoji": "NP",
+      "country": "Nepal",
+      "date": "2025-01-14T22:31:08.269Z",
       "notes": "",
       "position": {
-        "lat": "37.699127710141404",
-        "lng": "-89.05627544572098"
+        "lat": "28.686520205411927",
+        "lng": "82.24365234375001"
       }
     },
     {
-      "id": "6d88",
-      "cityName": "Shuklaphanta National Park",
-      "emoji": "NP",
-      "date": "2025-01-10T01:47:21.687Z",
+      "id": "2ba1",
+      "cityName": "Bulandshahr",
+      "emoji": "IN",
+      "country": "India",
+      "date": "2025-01-14T22:51:08.369Z",
       "notes": "",
       "position": {
-        "lat": "28.853176497316518",
-        "lng": "80.33134460449219"
+        "lat": "28.493534001464596",
+        "lng": "77.78320312500001"
+      }
+    },
+    {
+      "id": "2de2",
+      "cityName": "Bansi",
+      "emoji": "IN",
+      "country": "India",
+      "date": "2025-01-14T22:51:12.194Z",
+      "notes": "",
+      "position": {
+        "lat": "27.05326073803485",
+        "lng": "82.94677734375001"
+      }
+    },
+    {
+      "id": "ef5e",
+      "cityName": "Bahadurganj",
+      "emoji": "IN",
+      "country": "India",
+      "date": "2025-01-14T22:51:17.399Z",
+      "notes": "",
+      "position": {
+        "lat": "26.248977222468422",
+        "lng": "87.78076171875001"
       }
     }
   ]
